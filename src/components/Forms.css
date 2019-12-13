@@ -1,0 +1,11 @@
+form {
+    padding: 40px;
+}
+
+.submit-btn{
+    background-color: #6497b1;
+    border: 2px	#536878 solid;
+    color: #fff;
+    font: 10px;
+    padding: 2px 5px;
+}
