@@ -7,23 +7,26 @@ export class Forms extends Component {
     constructor(props) {
         super(props)
         this.state = {
-          user: [],
-          userid: ''
+            user: [],
+            userid: ''
         }
         this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)         
-        this.handleDelete = this.handleDelete.bind(this)     
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     handleChange(event) {
-        this.setState({userid: event.target.value})        
+        this.setState({ userid: event.target.value })
     }
-  
-    handleSubmit(event) {  
-        this.setState({user: [...this.state.user, this.state.userid]})
+
+    handleSubmit(event) {
+        this.setState({
+            user: [...this.state.user, this.state.userid],
+            userid: ''
+        })
         event.preventDefault()
     }
-  
+
     handleDelete(id) {
         console.log(id);
         console.log(this.state.user);
@@ -31,15 +34,14 @@ export class Forms extends Component {
             user: prevState.user.filter(item => item !== id),
         }))
     }
-        
+
     render() {
-        let avatars = this.state.user.map((userid, key) => <Avatar key={key} userid={userid} onDelete={ this.handleDelete }/>).reverse()
-        
+        let avatars = this.state.user.map((userid, key) => <Avatar key={key} userid={userid} onDelete={this.handleDelete} />).reverse()
+
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                <input type="text" value={this.state.userid} onChange={this.handleChange} /> 
-                <button className="submit-btn" type="submit">Submit</button>
+                    <input className="input-userid" type="text" autoFocus={true} placeholder="Enter User ID" value={this.state.userid} onChange={this.handleChange} /><button className="submit-btn" type="submit">Submit</button>
                 </form>
                 {avatars}
             </div>

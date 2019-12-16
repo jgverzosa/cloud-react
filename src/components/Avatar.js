@@ -50,7 +50,7 @@ export class Avatar extends Component {
         // console.log(isError)
         let message 
         if(isError){
-            message = <div class="error"> --------------------------- <br/> 
+            message = <div className="error"> --------------------------- <br/> 
                         <strong>ERROR:</strong> {this.state.itsError}<br/>
                         ---------------------------</div> 
             // console.log(5)
