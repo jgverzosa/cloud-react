@@ -20,7 +20,7 @@ export class Forms extends Component {
     }
   
     handleSubmit(event) {  
-        this.setState({user: [this.state.userid,...this.state.user]})
+        this.setState({user: [...this.state.user, this.state.userid]})
         event.preventDefault()
     }
   
@@ -33,7 +33,7 @@ export class Forms extends Component {
     }
         
     render() {
-        let avatars = this.state.user.map(userid => <Avatar key={userid} userid={userid} onDelete={ this.handleDelete }/>)
+        let avatars = this.state.user.map((userid, key) => <Avatar key={key} userid={userid} onDelete={ this.handleDelete }/>).reverse()
         
         return (
             <div>
