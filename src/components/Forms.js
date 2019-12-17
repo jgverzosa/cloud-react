@@ -21,22 +21,22 @@ export class Forms extends Component {
 
     handleSubmit(event) {
         this.setState({
-            user: [...this.state.user, this.state.userid],
+            user: [this.state.userid, ...this.state.user],
             userid: ''
         })
         event.preventDefault()
     }
 
     handleDelete(id) {
-        console.log(id);
-        console.log(this.state.user);
-        this.setState((prevState) => ({
-            user: prevState.user.filter(item => item !== id),
-        }))
+        this.setState(prevState => ({
+            user: prevState.user.filter(userid => userid !== id)
+        }));
     }
 
     render() {
-        let avatars = this.state.user.map((userid, key) => <Avatar key={key} userid={userid} onDelete={this.handleDelete} />).reverse()
+        let avatars = this.state.user.map(
+            userid => <Avatar key={userid} userid={userid} onDelete={this.handleDelete} />
+        )
 
         return (
             <div>
@@ -50,3 +50,4 @@ export class Forms extends Component {
 }
 
 export default Forms
+// PARENT
