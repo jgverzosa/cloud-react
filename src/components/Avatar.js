@@ -64,8 +64,9 @@ export class Avatar extends Component {
 
 
     render() {
+        console.log(this.props)
         let isError = this.state.isError
-        // console.log(isError)
+        // console.log(this.props)
         // let deleteUser = this.state.user.map((el) =>
         //     <button onClick={this._handleDelete.bind(this, el)}>x</button>
         // )

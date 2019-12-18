@@ -9,7 +9,8 @@ export class Forms extends Component {
         this.state = {
             user: [],
             userid: '',
-            submitStatus: true
+            submitStatus: true,
+            useridOb: []
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -24,26 +25,34 @@ export class Forms extends Component {
     }
 
     handleSubmit(event) {
+        // const testid = this.state.useridOb.map(item => item.id)
         this.setState({
             user: [...this.state.user, this.state.userid],
+            useridOb: [
+                ...this.state.useridOb,
+                { id: this.state.useridOb.length + 1, userid: this.state.userid }
+            ],
             userid: '',
             submitStatus: true
         })
         event.preventDefault()
+        console.log(this.state.user)
     }
 
     handleDelete(id) {
-        this.setState(prevState => ({
-            user: prevState.user.filter(userid => userid !== id)
-        }));
+        let userSplice = [...this.state.user]
+        let index = userSplice.indexOf(id)
+        if (index !== -1) {
+            userSplice.splice(index, 1)
+            this.setState({ user: userSplice })
+        }
     }
 
     render() {
         let avatars = this.state.user.map(
-            (userid, key) => <Avatar
+            key => <Avatar
                 key={key}
-                userkey={key}
-                userid={userid}
+                userid={key}
                 onDelete={this.handleDelete}
             />
         ).reverse()
@@ -75,3 +84,5 @@ export class Forms extends Component {
 
 export default Forms
 // PARENT
+
+// TODO: fix delete functionality
