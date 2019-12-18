@@ -28,15 +28,26 @@ export class Avatar extends Component {
         axios.get('https://reqres.in/api/users/' + this.props.userid)
             .then((res) => {
                 // console.log(res.data.data);
-                this.setState({ user: res.data.data, isError: false, isLoading: false })
+                this.setState({
+                    user: res.data.data,
+                    isError: false,
+                    isLoading: false
+                })
             })
             .catch((error) => {
                 // handle error
                 // console.log(error.message);
                 if (!error) {
-                    this.setState({ isError: false, isLoading: false })
+                    this.setState({
+                        isError: false,
+                        isLoading: false
+                    })
                 } else {
-                    this.setState({ isError: true, itsError: error.message, isLoading: false })
+                    this.setState({
+                        isError: true,
+                        itsError: error.message,
+                        isLoading: false
+                    })
                 }
             })
             .finally(function () {
@@ -48,7 +59,6 @@ export class Avatar extends Component {
     onDelete(id) {
         this.props.onDelete(id);
         // console.log(this.props.onDelete)
-        console.log(this.state.user)
     }
 
 
