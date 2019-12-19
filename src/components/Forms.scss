@@ -1,3 +1,21 @@
+$font-yellow: #d9ff00;
+
+.h1-yellow {
+    color: $font-yellow;
+}
+
+.h2-yellow {
+    color: $font-yellow;
+}
+
+.h3-yellow {
+    color: $font-yellow;
+}
+
+.h4-yellow {
+    color: darken($font-yellow, 20%);
+}
+
 form {
     padding: 40px;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Forms.css'
+import './Forms.scss'
 import Avatar from './Avatar.js'
 
 export class Forms extends Component {
@@ -56,6 +56,10 @@ export class Forms extends Component {
 
         return (
             <div>
+                <h1 className="h1-yellow">test 1</h1>
+                <h2 className="h2-yellow">test 1</h2>
+                <h3 className="h3-yellow">test 1</h3>
+                <h4 className="h4-yellow">test 1</h4>
                 <form onSubmit={this.handleSubmit}>
                     <input
                         className="input-userid"
