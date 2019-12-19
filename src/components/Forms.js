@@ -8,9 +8,8 @@ export class Forms extends Component {
         super(props)
         this.state = {
             user: [],
-            userid: '',
+            userId: '',
             submitStatus: true,
-            useridOb: []
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -19,41 +18,39 @@ export class Forms extends Component {
 
     handleChange(event) {
         this.setState({
-            userid: event.target.value,
+            userId: event.target.value,
             submitStatus: false
         })
     }
 
     handleSubmit(event) {
-        // const testid = this.state.useridOb.map(item => item.id)
         this.setState({
-            user: [...this.state.user, this.state.userid],
-            useridOb: [
-                ...this.state.useridOb,
-                { id: this.state.useridOb.length + 1, userid: this.state.userid }
-            ],
-            userid: '',
+            user: [...this.state.user, this.state.userId],
+            userId: '',
             submitStatus: true
         })
         event.preventDefault()
-        console.log(this.state.user)
     }
 
-    handleDelete(id) {
-        let userSplice = [...this.state.user]
-        let index = userSplice.indexOf(id)
-        if (index !== -1) {
+    /**
+     * This function can be call inside of the the Avatar.js component by passing it as props
+     * @param {*} index 
+     */
+    handleDelete(index) {
+        let userSplice = this.state.user
+        if(index !== -1){
             userSplice.splice(index, 1)
             this.setState({ user: userSplice })
         }
     }
 
     render() {
-        let avatars = this.state.user.map(
-            key => <Avatar
-                key={key}
-                userid={key}
-                onDelete={this.handleDelete}
+        let avatars = this.state.user.map((user, index) => 
+            <Avatar
+                key={index+'-'+user} // Makes the key unique
+                userId={user} // Fetch the user id Avatar.js->apiUser
+                index={index} // Defined as array position and will be bind into Avatar.js->onDelete
+                onDelete={this.handleDelete} // Can be use in the Avatar.js
             />
         ).reverse()
 
@@ -65,12 +62,11 @@ export class Forms extends Component {
                         type="text"
                         autoFocus={true}
                         placeholder="Enter User ID"
-                        value={this.state.userid}
+                        value={this.state.userId}
                         onChange={this.handleChange}
                     />
                     <button
                         className="submit-btn"
-                        type="submit"
                         disabled={this.state.submitStatus}
                     >
                         Submit

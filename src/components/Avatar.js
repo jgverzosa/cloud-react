@@ -13,21 +13,16 @@ export class Avatar extends Component {
             isLoading: true,
             user: []
         }
+        this.onDelete = this.onDelete.bind(this, this.props.index)
     }
 
     componentDidMount() {
         this.apiUser()
-        // console.log(3)
-    }
-
-    componentWillUnmount() {
-        // console.log(3)
     }
 
     apiUser() {
-        axios.get('https://reqres.in/api/users/' + this.props.userid)
+        axios.get('https://reqres.in/api/users/' + this.props.userId)
             .then((res) => {
-                // console.log(res.data.data);
                 this.setState({
                     user: res.data.data,
                     isError: false,
@@ -35,8 +30,6 @@ export class Avatar extends Component {
                 })
             })
             .catch((error) => {
-                // handle error
-                // console.log(error.message);
                 if (!error) {
                     this.setState({
                         isError: false,
@@ -50,38 +43,30 @@ export class Avatar extends Component {
                     })
                 }
             })
-            .finally(function () {
-                // always executed
-                // console.log('finally');
-            });
+            .finally(() => {});
     }
 
     onDelete(id) {
         this.props.onDelete(id);
-        // console.log(this.props.onDelete)
     }
 
-
-
     render() {
-        console.log(this.props)
         let isError = this.state.isError
-        // console.log(this.props)
-        // let deleteUser = this.state.user.map((el) =>
-        //     <button onClick={this._handleDelete.bind(this, el)}>x</button>
-        // )
         let message
         if (isError) {
-            message = <div className="error"> --------------------------- <br />
-                <strong>ERROR:</strong> {this.state.itsError}<br />
-                ---------------------------</div>
-            // console.log(5)
+            message = 
+                <div className="error"> 
+                    ---------------------------<br />
+                    <strong>ERROR:</strong> {this.state.itsError}<br />
+                    ---------------------------
+                </div>
         } else {
-            // console.log(6)
             message =
                 <div className="profile">
                     <div className="details-item">
-                        {this.state.user.id ? <img src={this.state.user.avatar} alt="test" /> : ""}
+                        {this.state.user.id 
+                            ? <img src={this.state.user.avatar} alt="test" /> 
+                            : ""}
                     </div>
                     <div className="details-item">
                         <span>{this.state.user.first_name} {this.state.user.last_name}</span><br />
@@ -89,11 +74,10 @@ export class Avatar extends Component {
                         {this.state.time}
                     </div>
                     <div className="details-item del-btn">
-                        <button onClick={this.onDelete.bind(this, this.props.userid)}>x</button>
+                        <button onClick={this.onDelete}>x</button>
                     </div>
                 </div >
         }
-
         return (
             <div>
                 {this.state.isLoading ? "Loading..." : message}
@@ -103,4 +87,3 @@ export class Avatar extends Component {
 }
 
 export default Avatar
-//CHILD

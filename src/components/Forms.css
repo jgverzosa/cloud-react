@@ -2,7 +2,7 @@ form {
     padding: 40px;
 }
 
-.input-userid{
+.input-userid {
     padding: 8px 20px;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
@@ -11,7 +11,13 @@ form {
     border-right: 0px;
     vertical-align: middle;
 }
-.submit-btn{
+
+.input-userid:focus {
+    outline: none;
+    border-color: #4dfff6;
+}
+
+.submit-btn {
     background-color: #6497b1;
     border: 2px	#536878 solid;
     color: #fff;
