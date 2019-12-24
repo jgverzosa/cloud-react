@@ -9,10 +9,6 @@ $font-yellow: #d9ff00;
 }
 
 .h3-yellow {
-    color: $font-yellow;
-}
-
-.h4-yellow {
     color: darken($font-yellow, 20%);
 }
 

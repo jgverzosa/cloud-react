@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import './Forms.scss'
-import Avatar from './Avatar.js'
+// import Avatar from './Avatar'
+const Avatar = React.lazy(() => import('./Avatar'));
+// import ThemeContext from './ThemeContext';
 
 export class Forms extends Component {
-
+    // static contextType = ThemeContext;
     constructor(props) {
         super(props)
         this.state = {
@@ -14,6 +16,8 @@ export class Forms extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+
+        console.log("I'm HEREEE!")
     }
 
     handleChange(event) {
@@ -56,10 +60,9 @@ export class Forms extends Component {
 
         return (
             <div>
-                <h1 className="h1-yellow">test 1</h1>
-                <h2 className="h2-yellow">test 1</h2>
-                <h3 className="h3-yellow">test 1</h3>
-                <h4 className="h4-yellow">test 1</h4>
+                <h1 className="h1-yellow">Masha</h1>
+                <h2 className="h2-yellow">Nina</h2>
+                <h3 className="h3-yellow">Katya</h3>
                 <form onSubmit={this.handleSubmit}>
                     <input
                         className="input-userid"

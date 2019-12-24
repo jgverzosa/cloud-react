@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import './Avatar.css'
 import axios from 'axios'
-
+import ThemeContext from './ThemeContext';
 
 export class Avatar extends Component {
+
+    static contextType = ThemeContext;
 
     constructor(props) {
         super(props)
@@ -80,6 +82,7 @@ export class Avatar extends Component {
         }
         return (
             <div>
+                <small>context: {this.context}</small>
                 {this.state.isLoading ? "Loading..." : message}
             </div>
         )
