@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Avatar.css'
 import axios from 'axios'
-import ThemeContext from './ThemeContext';
+import ThemeContext from './ThemeContext'
 
 export class Avatar extends Component {
 
@@ -15,7 +15,7 @@ export class Avatar extends Component {
             isLoading: true,
             user: []
         }
-        this.onDelete = this.onDelete.bind(this, this.props.index)
+        // this.onDelete = this.onDelete.bind(this, this.props.index)
     }
 
     componentDidMount() {
@@ -23,7 +23,7 @@ export class Avatar extends Component {
     }
 
     apiUser() {
-        axios.get('https://reqres.in/api/users/' + this.props.userId)
+        axios.get('https://reqres.in/api/users/' + this.props.match.params.id)
             .then((res) => {
                 this.setState({
                     user: res.data.data,
@@ -48,9 +48,9 @@ export class Avatar extends Component {
             .finally(() => {});
     }
 
-    onDelete(id) {
-        this.props.onDelete(id);
-    }
+    // onDelete(id) {
+    //     this.props.onDelete(id);
+    // }
 
     render() {
         let isError = this.state.isError
@@ -70,19 +70,17 @@ export class Avatar extends Component {
                             ? <img src={this.state.user.avatar} alt="test" /> 
                             : ""}
                     </div>
-                    <div className="details-item">
+                    <div className="details-item"><br/>
                         <span>{this.state.user.first_name} {this.state.user.last_name}</span><br />
                         {this.state.user.email}<br />
                         {this.state.time}
-                    </div>
-                    <div className="details-item del-btn">
-                        <button onClick={this.onDelete}>x</button>
                     </div>
                 </div >
         }
         return (
             <div>
                 <small>context: {this.context}</small>
+                <br/>
                 {this.state.isLoading ? "Loading..." : message}
             </div>
         )

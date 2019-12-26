@@ -49,3 +49,22 @@ form {
 .submit-btn:hover {
     background: #586e80;
 }
+
+.user-class{
+    padding: 0;   
+    padding-top:10px;
+
+    li {
+        list-style: none;        
+        padding-bottom:30px;
+        
+        img {
+            border-radius: 50%;
+        }
+
+        a{
+            text-decoration:none;
+            color: darken($font-yellow, 10%);
+        }
+    }
+}

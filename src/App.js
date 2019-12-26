@@ -5,8 +5,9 @@ import Navigation from './components/Navigation'
 import { BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 // import Forms from './components/Forms'
 // import About from './components/About'
-const Forms = React.lazy(() => import('./components/Forms'));
+const UserList = React.lazy(() => import('./components/UserList'));
 const About = React.lazy(() => import('./components/About'));
+const Avatar = React.lazy(() => import('./components/Avatar'));
 
 function App() {
   return (
@@ -17,9 +18,10 @@ function App() {
           <Router>
             <Navigation/>
             <Switch> 
-              <Suspense fallback={<div><br/>Loading...</div>}>
+              <Suspense fallback={<div>Loading...</div>}>
                 <Route exact path="/" component={About} />
-                <Route path="/forms" component={Forms} />                
+                <Route path="/user-list" component={UserList} />
+                <Route path="/user/:id" component={Avatar} />                
               </Suspense>
             </Switch>
           </Router>            

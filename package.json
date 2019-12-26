@@ -32,5 +32,17 @@
   },
   "devDependencies": {
     "node-sass": "^4.13.0"
-  }
+  },
+  "description": "Test Github\r # version\r 0.1.3",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgverzosa/cloud-react.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jgverzosa/cloud-react/issues"
+  },
+  "homepage": "https://github.com/jgverzosa/cloud-react#readme"
 }
