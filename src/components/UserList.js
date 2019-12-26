@@ -12,47 +12,47 @@ export class UserList extends Component {
         this.state = {
             user: [],
             userId: '',
-            submitStatus: true,
-            view: false,
-            viewId: ''
+            viewId: '',
+            page: 1,
+            per_page:3,
+            total_pages:null,
+            show: true
         }
-        // this.handleChange = this.handleChange.bind(this)
-        // this.handleSubmit = this.handleSubmit.bind(this)
-        // this.handleDelete = this.handleDelete.bind(this)
-
-        // this.handleView = this.handleView.bind(this)
+        this.loadMore = this.loadMore.bind(this)
     }
 
     componentDidMount() {
-        this.apiUser()
+        this.apiUser(this.state.page)
     }
 
-    apiUser() {
-        axios.get('https://reqres.in/api/users/') // + this.props.userId
+    loadMore(){
+        let p= this.state.page+1
+        this.setState({
+            page: p
+        })
+        this.apiUser(p)
+    }
+
+    apiUser(num) { 
+        axios.get("/get-users",
+            { params: {page: num, per_page:this.state.per_page}}) // + this.props.userId
             .then((res) => {
-                // console.log(res.data.data)
+                console.log(res.data)
                 this.setState({
-                    user: res.data.data,
-                    // isError: false,
-                    // isLoading: false
+                    user: [...this.state.user, ...res.data.data],
+                    total_pages: res.data.total_pages
                 })
+                if(res.data.total_pages === num){
+                    this.setState({
+                        show: false,
+                    })
+                }               
             })
-            .catch((error) => {
-                if (!error) {
-                    // this.setState({
-                    //     isError: false,
-                    //     isLoading: false
-                    // })
-                } else {
-                    // this.setState({
-                    //     isError: true,
-                    //     itsError: error.message,
-                    //     isLoading: false
-                    // })
-                }
-            })
+            .catch((error) => {})
             .finally()
     }
+
+
 
     render() {
 
@@ -65,6 +65,8 @@ export class UserList extends Component {
                 <ul className="user-class">
                     {user_list}
                 </ul>
+                {this.state.show?<button className="show-btn" onClick={this.loadMore}>Show more</button>:<p className="no-show">Nothing to show</p>}
+                <br/>
             </div>
         )
     }

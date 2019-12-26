@@ -44,5 +44,6 @@
   "bugs": {
     "url": "https://github.com/jgverzosa/cloud-react/issues"
   },
-  "homepage": "https://github.com/jgverzosa/cloud-react#readme"
+  "homepage": "https://github.com/jgverzosa/cloud-react#readme",
+  "proxy": "http://localhost:4000"
 }
