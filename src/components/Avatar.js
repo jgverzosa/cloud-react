@@ -23,7 +23,7 @@ export class Avatar extends Component {
     }
 
     apiUser() {
-        axios.get('/api/user/' + this.props.match.params.id)
+        axios.get(`${process.env.REACT_APP_BASE_API}/api/users/${this.props.match.params.id}`)
             .then((res) => {
                 this.setState({
                     user: res.data.data,

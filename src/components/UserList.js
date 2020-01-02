@@ -34,7 +34,7 @@ export class UserList extends Component {
     }
 
     apiUser(num) { 
-        axios.get("/get-users",
+        axios.get(`${process.env.REACT_APP_BASE_API}/api/users`,
             { params: {page: num, per_page:this.state.per_page}}) // + this.props.userId
             .then((res) => {
                 console.log(res.data)
